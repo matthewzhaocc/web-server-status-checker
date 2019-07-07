@@ -7,7 +7,7 @@ install nginx
 configure nginx
 edit /etc/nginx/sites-avaliable/default
 
-set the root as /home/<your username>/web-server-status-checker/
+set the root as /home/\<your username\>/web-server-status-checker/
 
 save and restart nginx
 ```systemctl restart nginx```
