@@ -1,0 +1,27 @@
+{
+  "name": "web-server-status-checker",
+  "version": "1.0.0",
+  "description": "a webserver for showing host status",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhixianMatthewZhao/web-server-status-checker.git"
+  },
+  "keywords": [
+    "ping",
+    "tester"
+  ],
+  "author": "Matthew Zhao",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/zhixianMatthewZhao/web-server-status-checker/issues"
+  },
+  "homepage": "https://github.com/zhixianMatthewZhao/web-server-status-checker#readme",
+  "dependencies": {
+    "http": "0.0.0",
+    "ping": "^0.2.2"
+  }
+}

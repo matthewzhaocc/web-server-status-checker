@@ -1,23 +1,25 @@
 const ping = require('ping');
-const fs = require('fs');
-var hosts = ['10.20.0.72', '10.20.0.71', '10.20.0.75','10.20.0.70','10.20.0.80'];
+const http = require('http');
 
-  fs.writeFile("index.html","",(err)=>{})
-function teststat(){
-  hosts.forEach(function(host){
-    ping.sys.probe(host, function(isAlive){
-      var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
+var hosts = [
+	'10.20.0.72', 
+	'10.20.0.71', 
+	'10.20.0.75',
+	'10.20.0.70',
+	'10.20.0.80'
+	];
+var resp = '';
+http.createServer(function (req, res) {
+	
+	hosts.forEach(function(host){
+		ping.sys.probe(host, function(isAlive){
+			resp += 'host ' + host+ ' status is ' + isAlive + '\n';
+		});
+	});
+	console.log(resp);
+	res.write(resp);
+	res.end();
+}).listen(8080);
 
-      msg+="<br>";
-      //console.log(msg);
-      fs.appendFile("index.html",msg,(err)=>{})
 
 
-      });
-
-  });
-  console.log("test")
-
-}
-
-teststat()
