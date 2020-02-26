@@ -1,25 +1,14 @@
-const ping = require('ping');
-const http = require('http');
-
-var hosts = [
-	'10.20.0.72', 
-	'10.20.0.71', 
-	'10.20.0.75',
-	'10.20.0.70',
-	'10.20.0.80'
-	];
-var resp = '';
-http.createServer(function (req, res) {
-	
-	hosts.forEach(function(host){
-		ping.sys.probe(host, function(isAlive){
-			resp += 'host ' + host+ ' status is ' + isAlive + '\n';
-		});
-	});
-	console.log(resp);
-	res.write(resp);
-	res.end();
-}).listen(8080);
-
-
+let ping = require('ping')
+let express = require("express")
+let app = express()
+let port = 8000
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+app.post('/api/v1/ping/status', (req,res) => {
+	let ip = req.body.ip
+	ping.sys.probe(ip, (isAlive) => {
+		res.send(isAlive)
+	})
+})
+app.listen(port, () => console.log(`running pingifuker on port ${port}`))
 
